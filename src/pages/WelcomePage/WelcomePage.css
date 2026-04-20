@@ -1,0 +1,104 @@
+
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Caja del juego */
+.game-container {   
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  width: 900px;
+  backdrop-filter: blur(10px);
+}
+
+/* Título */
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #38bdf8;
+}
+
+/* Opciones de login */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Caja para login */
+.login-box, .guest-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  width: 45%;
+}
+
+h2 {
+  font-size: 18px;
+  color: #38bdf8;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+  outline: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #38bdf8;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #0ea5e9;
+  transform: scale(1.05);
+}
+
+/* Mensajes */
+.welcome-message p {
+  font-weight: bold;
+  color: #fbbf24;
+  margin-top: 20px;
+}
+
+/* Enlace para cambiar entre Login y Register */
+.link {
+  color: #38bdf8;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #0ea5e9;
+}
