@@ -24,7 +24,7 @@ function NavBar() {
             </button>
             <span className="navbar-points">Puntos: {user.maxPoints}</span>
             <button onClick={() => { logout(); navigate('/'); }} className="navbar-logout-btn">
-              Log-Out
+              {user.name === "invitado" ? 'Iniciar sesión' : 'Logout'}
             </button>
           </>
         ) : (
