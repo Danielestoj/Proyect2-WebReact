@@ -56,7 +56,7 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   };
 
-  // ⭐ ACTUALIZAR PUNTOS
+  // ACTUALIZAR PUNTOS
   const updateUserPoints = (name, newPoints) => {
     const index = users.findIndex((u) => u.name === name);
     if (index !== -1) {
@@ -67,7 +67,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  // ⭐ ACTUALIZAR ESTADÍSTICAS DE MODO
+  // ACTUALIZAR ESTADÍSTICAS DE MODO
   const updateUserStats = (name, mode) => {
     const index = users.findIndex((u) => u.name === name);
     if (index === -1) return;
@@ -77,7 +77,7 @@ export const UserProvider = ({ children }) => {
     if (mode === "titulo") users[index].numPNombre += 1;
     if (mode === "reloj") users[index].numPReloj += 1;
 
-    // ⭐ Actualizar estado del usuario para que React re-renderice
+    // Actualizar estado del usuario para que React re-renderice
     setUser({ ...users[index] });
   };
 

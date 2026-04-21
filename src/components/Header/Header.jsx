@@ -1,43 +1,50 @@
-import React, { useContext } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import './Header.css';
+import React, { useState, useContext } from "react";
 import { UserContext } from "../Context/UserContext";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
-function NavBar() {
+function Header() {
   const { user, logout } = useContext(UserContext);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const isWelcomePage = location.pathname === '/';
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="navbar">
-      <div className="navbar-left">
-        <span className="navbar-logo">Game</span>
-      </div>
+    <>
+      <nav className="navbar">
+        <div className="navbar-left">
+          <Link to="/" className="navbar-logo">GameGuess</Link>
+        </div>
 
-      <div className="navbar-right">
-        {user ? (
+        {/* Menú normal (desktop) */}
+        <div className="navbar-right">
+          {user && (
+            <>
+              <span className="navbar-user">👤 {user.name}</span>
+              <span className="navbar-points">⭐ {user.maxPoints}</span>
+              <button className="navbar-user-btn" onClick={logout}>Salir</button>
+            </>
+          )}
+        </div>
+
+        {/* Hamburguesa (móvil) */}
+        <div className="hamburger" onClick={() => setOpen(!open)}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </nav>
+
+      {/* Menú móvil FUERA del navbar */}
+      <div className={`mobile-menu ${open ? "show" : ""}`}>
+        {user && (
           <>
-            <button onClick={() => navigate('/user-profile')} className="navbar-user-btn">
-              {user.name}
-            </button>
-            <span className="navbar-points">Puntos: {user.maxPoints}</span>
-            <button onClick={() => { logout(); navigate('/'); }} className="navbar-logout-btn">
-              {user.name === "invitado" ? 'Iniciar sesión' : 'Logout'}
-            </button>
+            <span className="navbar-user">👤 {user.name}</span>
+            <span className="navbar-points">⭐ {user.maxPoints}</span>
+            <button className="navbar-user-btn" onClick={logout}>Salir</button>
           </>
-        ) : (
-          !isWelcomePage && (
-            <button onClick={() => navigate('/')} className="navbar-user-btn">
-              Iniciar sesión
-            </button>
-          )
         )}
       </div>
-    </div>
+    </>
   );
 }
 
-export default NavBar;
-
+export default Header;

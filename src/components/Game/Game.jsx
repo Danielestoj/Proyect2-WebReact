@@ -86,7 +86,7 @@ function Game() {
 
     const isCorrect = answer.toLowerCase() === game.name.toLowerCase();
 
-    // ✔️ SI ACIERTA
+    // SI ACIERTA
     if (isCorrect) {
       setMessage("¡Correcto!");
 
@@ -107,15 +107,15 @@ function Game() {
       setUser({ ...user, maxPoints: updated });
       updateUserPoints(user.name, updated);
 
-      // ⭐ SUMAR +1 AL MODO JUGADO
+      // SUMAR +1 AL MODO JUGADO
       updateUserStats(user.name, mode);
 
-      // ⭐ Cambiar de juego tras 4 segundos
+      // Cambiar de juego tras 4 segundos
       setTimeout(() => loadNewGame(), 4000);
       return;
     }
 
-    // ❌ SI FALLA
+    // SI FALLA
     setMessage("Incorrecto");
 
     const newAttempts = attempts - 1;
@@ -140,8 +140,6 @@ function Game() {
 
   return (
     <div className="game-container">
-      <h1>Adivina el videojuego 🎮</h1>
-
       <ImageReveal
         image={game.background_image}
         attempts={attempts}
@@ -149,7 +147,7 @@ function Game() {
         onLoad={() => setLoading(false)}
       />
 
-      <p>Puntuación: {points}</p>
+      <p style={{ textAlign: "center" }}>Puntuación: {points}</p>
 
       {mode === "portada" && (
         <>

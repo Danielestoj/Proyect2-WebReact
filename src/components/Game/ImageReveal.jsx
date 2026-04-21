@@ -5,7 +5,7 @@ function ImageReveal({ image, attempts, onLoad, forceClear }) {
 
   const maxAttempts = 5;
 
-  // ⭐ Si forceClear es true, blur = 0
+  // Si forceClear es true, blur = 0
   const blurLevel = forceClear
     ? 0
     : (attempts / maxAttempts) * 10;
@@ -16,7 +16,12 @@ function ImageReveal({ image, attempts, onLoad, forceClear }) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center", 
+        width: "100%"
+      }}>
       <img
         src={image}
         alt="juego"

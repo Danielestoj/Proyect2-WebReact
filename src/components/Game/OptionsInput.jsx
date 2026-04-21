@@ -53,7 +53,8 @@ function OptionsInput({ games, correctGame, onSelect }) {
             disabled={locked}
             style={{
               width: "48%",
-              height: "40px",
+              minHeight: "40px",          // Permite crecer si el texto es largo
+              padding: "8px 10px",
               fontSize: "14px",
               cursor: locked ? "default" : "pointer",
               borderRadius: "6px",
@@ -61,6 +62,13 @@ function OptionsInput({ games, correctGame, onSelect }) {
               background: bg,
               color: locked ? "white" : "black",
               transition: "0.2s",
+
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              whiteSpace: "normal",       // Permite saltos de línea
+              wordBreak: "break-word",    // Evita romper el layout
             }}
           >
             {g.name}

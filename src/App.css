@@ -1,86 +1,167 @@
+/* ============================= */
+/* 🎨 VARIABLES GLOBALES         */
+/* ============================= */
+:root {
+  --bg-gradient: linear-gradient(135deg, #0a0f2d, #1a1446, #2a1b6f);
+
+  --primary: #a78bfa;
+  --primary-hover: #8b5cf6;
+  --accent: #ff7edb;
+
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.12);
+
+  --text: #ffffff;
+  --shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.25s ease;
+}
+
+/* ============================= */
+/* 🌍 ESTILOS GENERALES          */
+/* ============================= */
+
 body {
   margin: 0;
-  font-family: "Arial", sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: white;
+  font-family: "Inter", sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
-/* Contenedor principal */
 #root {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* Caja del juego */
-.game-container {
-  background: rgba(255, 255, 255, 0.05);
+/* ============================= */
+/* 🧊 CONTENEDORES GLASS         */
+/* ============================= */
+
+.glass-box {
+  background: var(--glass);
   padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
   text-align: center;
-  width: 900px;
-  backdrop-filter: blur(10px);
 }
 
-/* Título */
-h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #38bdf8;
+/* ============================= */
+/* TIPOGRAFÍA                   */
+/* ============================= */
+
+h1, h2 {
+  color: var(--primary);
 }
 
-/* Imagen */
-img {
-  border-radius: 12px;
-  margin: 15px 0;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-  width: 90%;
-  height: 90%;
-}
-
-/* Input */
-input {
-  width: 90%;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  margin-top: 10px;
-  outline: none;
-  text-align: center;
-  font-size: 14px;
-}
-
-/* Botón */
-button {
-  margin-top: 10px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  background-color: #38bdf8;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background-color: #0ea5e9;
-  transform: scale(1.05);
-}
-
-/* Texto de intentos */
 p {
   margin-top: 10px;
 }
 
-/* Mensajes */
-.message {
-  font-weight: bold;
+/* ============================= */
+/* IMÁGENES                     */
+/* ============================= */
+
+img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 90%;
+}
+
+/* ============================= */
+/* INPUTS                       */
+/* ============================= */
+
+input {
+  width: 90%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
   margin-top: 10px;
-  color: #fbbf24;
+  background: var(--glass-strong);
+  color: var(--text);
+}
+
+/* ============================= */
+/* BOTONES                      */
+/* ============================= */
+
+button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--primary);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+/* ============================= */
+/* RESPONSIVE 780px             */
+/* ============================= */
+
+@media (max-width: 780px) {
+  .game-container,
+  .game-selector,
+  .welcome-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  img {
+    max-height: 350px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .game-selector {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* ============================= */
+/* RESPONSIVE 500px             */
+/* ============================= */
+
+@media (max-width: 500px) {
+
+  h1 { font-size: 20px; }
+  h2 { font-size: 18px; }
+  p  { font-size: 14px; }
+
+  .game-container,
+  .game-selector,
+  .welcome-container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  img {
+    max-height: 250px;
+  }
+
+  input {
+    padding: 8px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 14px;
+  }
 }

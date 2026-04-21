@@ -86,7 +86,9 @@ function WelcomePage() {
 
             <div className="guest-box">
               <h2>Entrar como invitado</h2>
-              <button onClick={handleGuestLogin}>Entrar</button>
+              <button className="guest-button" onClick={handleGuestLogin}>
+                Entrar
+              </button>
             </div>
           </div>
         ) : (

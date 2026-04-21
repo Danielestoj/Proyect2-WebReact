@@ -7,6 +7,7 @@ import UserProfile from './pages/UserProfile/UserProfile'; // Importamos UserPro
 import { users } from './Data'; // Importamos los usuarios desde Data
 import { UserProvider } from "./components/Context/UserContext"; // Importamos el UserProvider
 import Game from './components/Game/Game.jsx';
+import './App.css';
 
 
 function App() {
