@@ -1,5 +1,5 @@
 /* ============================= */
-/* 🎨 VARIABLES GLOBALES         */
+/* VARIABLES GLOBALES         */
 /* ============================= */
 :root {
   --bg-gradient: linear-gradient(135deg, #0a0f2d, #1a1446, #2a1b6f);
@@ -66,16 +66,6 @@ p {
 }
 
 /* ============================= */
-/* IMÁGENES                     */
-/* ============================= */
-
-img {
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  width: 90%;
-}
-
-/* ============================= */
 /* INPUTS                       */
 /* ============================= */
 
@@ -110,54 +100,17 @@ button:hover {
 }
 
 /* ============================= */
-/* RESPONSIVE 780px             */
-/* ============================= */
-
-@media (max-width: 780px) {
-  .game-container,
-  .game-selector,
-  .welcome-container {
-    width: 95%;
-    padding: 20px;
-  }
-
-  img {
-    max-height: 350px;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  .game-selector {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-
-/* ============================= */
-/* RESPONSIVE 500px             */
+/* RESPONSIVE GLOBAL            */
 /* ============================= */
 
 @media (max-width: 500px) {
-
   h1 { font-size: 20px; }
   h2 { font-size: 18px; }
   p  { font-size: 14px; }
 
-  .game-container,
-  .game-selector,
-  .welcome-container {
-    width: 100%;
-    padding: 15px;
-  }
-
-  img {
-    max-height: 250px;
-  }
-
   input {
-    padding: 8px;
+    padding: 10px;
+    font-size: 14px;
   }
 
   button {

@@ -27,6 +27,7 @@ function ImageReveal({ image, attempts, onLoad, forceClear }) {
         alt="juego"
         onLoad={handleLoad}
         style={{
+          marginTop: "50px",
           maxWidth: "900px",
           maxHeight: "500px",
           width: "100%",

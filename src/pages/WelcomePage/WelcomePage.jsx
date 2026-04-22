@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { users } from '../../Data';
 import { useNavigate } from 'react-router-dom';
 import './WelcomePage.css';
 import { UserContext } from "../../components/Context/UserContext";
@@ -15,8 +14,9 @@ function WelcomePage() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    const user = login(username, password);
-    if (user) {
+    const loggedUser = login(username, password);
+
+    if (loggedUser) {
       navigate('/game-selector');
     } else {
       setMessage("Nombre de usuario o contraseña incorrectos.");
@@ -25,6 +25,7 @@ function WelcomePage() {
 
   const handleRegister = () => {
     const newUser = register(username, password);
+
     if (newUser) {
       navigate('/game-selector');
     } else {
@@ -47,18 +48,25 @@ function WelcomePage() {
           <div className="login-options">
             <div className="login-box">
               <h2>{isRegistering ? 'Registrarse' : 'Iniciar sesión'}</h2>
+              {message && <p className="error-message">{message}</p>}
 
               <input
                 type="text"
                 placeholder="Nombre de usuario"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setMessage(""); // limpiar mensaje al escribir
+                }}
               />
               <input
                 type="password"
                 placeholder="Contraseña"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setMessage(""); // limpiar mensaje al escribir
+                }}
               />
 
               <button onClick={isRegistering ? handleRegister : handleLogin}>

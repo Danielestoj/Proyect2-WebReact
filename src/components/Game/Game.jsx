@@ -2,9 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import ImageReveal from "./ImageReveal";
 import AnswerInput from "./AnswerInput";
-import Score from "./Score";
 import OptionsInput from "./OptionsInput";
 import { UserContext } from "../Context/UserContext";
+import { GameDataContext } from "../Context/GameDataContext";
+
+import "./Game.css";
 
 function Game() {
   const { state } = useLocation();
@@ -13,49 +15,28 @@ function Game() {
   const { user, setUser, updateUserPoints, updateUserStats } =
     useContext(UserContext);
 
-  const [games, setGames] = useState([]);
-  const [game, setGame] = useState(null);
+  const { games, game, loading, loadNewGame } = useContext(GameDataContext);
 
   const [attempts, setAttempts] = useState(5);
   const [message, setMessage] = useState("");
   const [points, setPoints] = useState(0);
-
-  const [loading, setLoading] = useState(true);
-
   const [hints, setHints] = useState([]);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Cargar juegos al inicio
+  // Reset al cambiar de juego
   useEffect(() => {
-    const randomPage = Math.floor(Math.random() * 100) + 1;
+    if (game) {
+      setAttempts(5);
+      setMessage("");
+      setPoints(0);
+      setHints([]);
+      setImageLoaded(false); // ← IMPORTANTE
+    }
+  }, [game]);
 
-    fetch(
-      `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&page_size=30&page=${randomPage}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setGames(data.results);
-
-        const random =
-          data.results[Math.floor(Math.random() * data.results.length)];
-
-        setGame(random);
-      });
-  }, []);
-
-  // Cargar nuevo juego
-  const loadNewGame = () => {
-    const random = games[Math.floor(Math.random() * games.length)];
-    setGame(random);
-    setAttempts(5);
-    setMessage("");
-    setPoints(0);
-    setHints([]);
-    setLoading(true);
-  };
-
-  // Añadir pistas
+  // Añadir pistas (solo modo portada)
   const addHint = () => {
-    if (!game) return;
+    if (!game || mode !== "portada") return;
 
     const nextHintIndex = hints.length;
 
@@ -73,11 +54,11 @@ function Game() {
           }`
         : nextHintIndex === 3
         ? `Año de lanzamiento: ${game.released || "Desconocido"}`
+        : nextHintIndex === 4
+        ? `El título era: ${game.name}`
         : null;
 
-    if (newHint) {
-      setHints([...hints, newHint]);
-    }
+    if (newHint) setHints([...hints, newHint]);
   };
 
   // Comprobar respuesta
@@ -86,7 +67,6 @@ function Game() {
 
     const isCorrect = answer.toLowerCase() === game.name.toLowerCase();
 
-    // SI ACIERTA
     if (isCorrect) {
       setMessage("¡Correcto!");
 
@@ -107,21 +87,19 @@ function Game() {
       setUser({ ...user, maxPoints: updated });
       updateUserPoints(user.name, updated);
 
-      // SUMAR +1 AL MODO JUGADO
       updateUserStats(user.name, mode);
 
-      // Cambiar de juego tras 4 segundos
       setTimeout(() => loadNewGame(), 4000);
       return;
     }
 
-    // SI FALLA
+    // FALLA
     setMessage("Incorrecto");
 
-    const newAttempts = attempts - 1;
-    setAttempts(newAttempts);
-
     if (mode === "portada") {
+      const newAttempts = attempts - 1;
+      setAttempts(newAttempts);
+
       addHint();
 
       if (newAttempts === 0) {
@@ -144,17 +122,22 @@ function Game() {
         image={game.background_image}
         attempts={attempts}
         forceClear={message === "¡Correcto!"}
-        onLoad={() => setLoading(false)}
+        onLoad={() => setImageLoaded(true)} // ← AHORA FUNCIONA
       />
 
-      <p style={{ textAlign: "center" }}>Puntuación: {points}</p>
+      {/* PUNTOS */}
+      <p className="game-points">Puntuación: {points}</p>
 
+      {/* ========================= */}
+      {/* MODO PORTADA              */}
+      {/* ========================= */}
       {mode === "portada" && (
         <>
-          <AnswerInput onSubmit={checkAnswer} />
-          <Score attempts={attempts} />
+          <p className="game-attempts">Intentos restantes: {attempts}</p>
 
-          <div style={{ marginTop: "20px" }}>
+          <AnswerInput onSubmit={checkAnswer} />
+
+          <div className="hints-box">
             {hints.map((h, i) => (
               <p key={i}>
                 <strong>Pista {i + 1}:</strong> {h}
@@ -164,16 +147,21 @@ function Game() {
         </>
       )}
 
-      {mode === "titulo" && !loading && (
-        <OptionsInput
-          key={game.id}
-          games={games}
-          correctGame={game}
-          onSelect={checkAnswer}
-        />
+      {/* ========================= */}
+      {/* MODO TÍTULO               */}
+      {/* ========================= */}
+      {mode === "titulo" && (
+        <div className="options-grid">
+          <OptionsInput
+            key={game.id}
+            games={games}
+            correctGame={game}
+            onSelect={checkAnswer}
+          />
+        </div>
       )}
 
-      <p>{message}</p>
+      <p className="game-message">{message}</p>
     </div>
   );
 }

@@ -97,4 +97,59 @@ Este proyecto consiste en una aplicación de juegos donde los usuarios pueden re
    * Los estilos podrían mejorarse para que la aplicación sea completamente responsiva y se vea bien en dispositivos móviles. Actualmente, el diseño se adapta, pero se podría mejorar aún más.
 
 ---
+### Día 2 – Refactorización y Contextos
+El segundo día me centré en mejorar la arquitectura:
+
+**Creación de GameDataContext**
+* Moví toda la lógica de la API RAWG a un contexto dedicado:
+
+* Carga de juegos
+
+* Selección aleatoria
+
+* loadNewGame()
+
+**Estado global de juegos**
+
+* Limpieza de Game.jsx: Eliminé toda la lógica de fetch y la reemplacé por el contexto. Separé completamente los dos modos de juego.
+
+* Eliminación de Score.jsx: Integré la puntuación directamente en Game.jsx.
+
+* Reorganización de carpetas: Organicé los componentes por áreas funcionales.
+
+* Actualización de App.jsx: Añadí GameDataProvider envolviendo toda la aplicación.
+
+### Día 3 – Correcciones, Estética y Lógica de Juego
+Este día estuvo dedicado a pulir detalles y corregir bugs:
+
+* Creación de Game.css: Saqué todos los estilos específicos del juego desde App.css y creé un CSS modular:
+
+* Corrección del bug del modo “título”: Las opciones no aparecían para usuarios registrados porque dependían de imageLoaded.Eliminé esa condición para que las opciones aparezcan siempre.
+
+* Separación total de modos: Ahora cada modo tiene su lógica y UI independiente.
+
+* Corrección del Header. Redirección tanto del título como del Logout a la WelcomePage.
+
+
+**Mejoras Futuras**
+* Persistencia real de usuarios (localStorage o base de datos).
+
+* Validación de contraseñas y seguridad.
+
+* Nuevos modos de juego.
+
+* Animaciones avanzadas (shake al fallar, efectos al acertar).
+
+* Sonidos y feedback visual.
+
+
+----
+### NOTAS PARA EL DIA 4
+* Revisar requisitos para comprobar que todo se cumpla
+
+* Hacer mini imprevisto de tiempo en cada sección
+
+* Hacer modo dia/noche
+
+* Modificar profile para que aparezca la ID o el nombre del usuario
 

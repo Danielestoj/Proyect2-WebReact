@@ -11,13 +11,15 @@ function AnswerInput({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <input style={{ width: "500px" }}
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Escribe el juego"
       />
-      <button type="submit">Enviar</button>
+      <button style={{ marginTop: "20px", width: "50%" }} type="submit">
+        Enviar
+      </button>
     </form>
   );
 }
