@@ -15,10 +15,9 @@ function UserProfile() {
       <div className="profile-info">
         <h2>Nombre: {user.name}</h2>
         <p>Puntuación: {user.maxPoints}</p>
-        <p>Partidas Jugadas: {user.numPAdivina + user.numPNombre + user.numPReloj}</p>
+        <p>Partidas Jugadas: {user.numPAdivina + user.numPNombre}</p>
         <p>Partidas Adivina el Juego: {user.numPAdivina}</p>
         <p>Partidas Adivina el Título Correcto: {user.numPNombre}</p>
-        <p>Partidas A Contra Reloj: {user.numPReloj}</p>
       </div>
 
       <button onClick={() => navigate('/game-selector')} className="go-back-button">

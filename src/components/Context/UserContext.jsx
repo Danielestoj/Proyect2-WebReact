@@ -27,7 +27,6 @@ export const UserProvider = ({ children }) => {
       numPartidas: "",
       numPAdivina: 0,
       numPNombre: 0,
-      numPReloj: 0,
     };
     setUser(guest);
   };
@@ -43,7 +42,6 @@ export const UserProvider = ({ children }) => {
       numPartidas: "",
       numPAdivina: 0,
       numPNombre: 0,
-      numPReloj: 0,
     };
 
     users.push(newUser);
@@ -75,7 +73,6 @@ export const UserProvider = ({ children }) => {
     // Actualizar mock
     if (mode === "portada") users[index].numPAdivina += 1;
     if (mode === "titulo") users[index].numPNombre += 1;
-    if (mode === "reloj") users[index].numPReloj += 1;
 
     // Actualizar estado del usuario para que React re-renderice
     setUser({ ...users[index] });

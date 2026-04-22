@@ -23,11 +23,6 @@ function GameSelector() {
         <button onClick={() => startGame("titulo")}>Empezar juego</button>
       </div>
 
-      <div className="game-box">
-        <h2>A contra Reloj</h2>
-        <p>Adivina lo antes posible.</p>
-        <button onClick={() => startGame("reloj")}>Empezar juego</button>
-      </div>
     </div>
   );
 }

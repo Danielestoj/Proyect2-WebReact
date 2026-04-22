@@ -56,7 +56,6 @@
 
 /* BOTÓN */
 .navbar-user-btn {
-  padding: 10px 18px;
   border: none;
   border-radius: var(--radius);
   background-color: var(--primary);
@@ -64,6 +63,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: var(--transition);
+  font-size: 16px;
 }
 
 .navbar-user-btn:hover {

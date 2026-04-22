@@ -3,8 +3,10 @@
   flex-direction: row;
   gap: 20px;
   width: 900px;
-  margin-top: 100px;
+  height: 300px;
   justify-content: center;
+  gap: 40px;
+  margin :0px 20px 20px 20px;
 }
 
 .game-box {

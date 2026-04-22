@@ -1,11 +1,18 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../Context/UserContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";   // ← IMPORTANTE
 import "./Header.css";
 
 function Header() {
   const { user, logout } = useContext(UserContext);
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();   // ← NECESARIO PARA NAVEGAR
+
+  const goToProfile = () => {
+    navigate("/user-profile");
+    setOpen(false); // cerrar menú móvil si estaba abierto
+  };
 
   return (
     <>
@@ -18,8 +25,12 @@ function Header() {
         <div className="navbar-right">
           {user && (
             <>
-              <span className="navbar-user">👤 {user.name}</span>
+              <button className="navbar-user" onClick={goToProfile}>
+                👤 {user.name}
+              </button>
+
               <span className="navbar-points">⭐ {user.maxPoints}</span>
+
               <button className="navbar-user-btn" onClick={logout}>Salir</button>
             </>
           )}
@@ -33,12 +44,16 @@ function Header() {
         </div>
       </nav>
 
-      {/* Menú móvil FUERA del navbar */}
+      {/* Menú móvil */}
       <div className={`mobile-menu ${open ? "show" : ""}`}>
         {user && (
           <>
-            <span className="navbar-user">👤 {user.name}</span>
+            <button className="navbar-user" onClick={goToProfile}>
+              👤 {user.name}
+            </button>
+
             <span className="navbar-points">⭐ {user.maxPoints}</span>
+
             <button className="navbar-user-btn" onClick={logout}>Salir</button>
           </>
         )}
