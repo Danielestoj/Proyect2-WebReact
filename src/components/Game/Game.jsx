@@ -134,16 +134,26 @@ function Game() {
       {mode === "portada" && (
         <>
           <p className="game-attempts">Intentos restantes: {attempts}</p>
+          <p className={`game-message ${
+            message === "¡Correcto!" ? "correct" :
+            message === "Incorrecto" ? "incorrect" :
+            ""
+          }`}
+          >
+            {message}
+          </p>
 
           <AnswerInput onSubmit={checkAnswer} />
 
-          <div className="hints-box">
-            {hints.map((h, i) => (
-              <p key={i}>
-                <strong>Pista {i + 1}:</strong> {h}
-              </p>
-            ))}
-          </div>
+          {hints.length > 0 && (
+            <div className="hints-box">
+              {hints.map((h, i) => (
+                <p key={i}>
+                  <strong>Pista {i + 1}:</strong> {h}
+                </p>
+              ))}
+            </div>
+          )}
         </>
       )}
 
@@ -161,7 +171,7 @@ function Game() {
         </div>
       )}
 
-      <p className="game-message">{message}</p>
+      
     </div>
   );
 }

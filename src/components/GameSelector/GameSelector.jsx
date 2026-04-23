@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './GameSelector.css';
+import { GameDataContext } from "../Context/GameDataContext";
 
 function GameSelector() {
   const navigate = useNavigate();
+  const { loadGameList } = useContext(GameDataContext);
 
-  const startGame = (mode) => {
+  const startGame = async (mode) => {
+    await loadGameList(); // Cargar lista nueva de juegos
     navigate('/game', { state: { mode } });
   };
 
@@ -22,7 +25,6 @@ function GameSelector() {
         <p>4 nombres, solo uno correcto.</p>
         <button onClick={() => startGame("titulo")}>Empezar juego</button>
       </div>
-
     </div>
   );
 }

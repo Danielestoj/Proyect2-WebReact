@@ -1,155 +1,310 @@
-Dia 1:
+### GameGuess – Proyecto React + API RAWG
 
-## Diario de Desarrollo
+### Descripción
+GameGuess es una aplicación web interactiva basado en la web guessthe.game desarrollada con React que permite a los usuarios jugar a dos modos distintos de adivinanza basados en videojuegos reales obtenidos desde la API de RAWG.
+El proyecto incluye autenticación básica, perfiles de usuario, sistema de puntuación, estadísticas, modo invitado, diseño responsive y un sistema de temas (claro/oscuro).
 
-### Introducción
+El objetivo principal ha sido simular un flujo de trabajo real: diseño, desarrollo, integración con API externa, manejo de estado global, navegación, UI/UX y documentación profesional.
 
-Este proyecto consiste en una aplicación de juegos donde los usuarios pueden registrarse, iniciar sesión y jugar varios mini-juegos. La interfaz se construyó usando **React** y **React Router** para la navegación entre páginas. También se implementó un sistema de gestión de usuario con funcionalidad de inicio de sesión y perfil.
+### Equipo
+Creado por Daniel Estupiñán Ojeda para la Escuela de Programadores IV.
 
-### Características Implementadas
+### Funcionalidades
+ * Sistema de usuarios:
+   - Registro
+   - Login
+   - Modo invitado 
+   - Perfil editable (cambio de nombre con validación)
 
-1. **Página de bienvenida (WelcomePage)**:
+* Estadísticas por modo de juego
 
-   * En la página de bienvenida, el usuario puede registrarse, iniciar sesión o entrar como invitado.
-   * Cuando el usuario inicia sesión o se registra, se guarda el nombre de usuario y se muestra un **NavBar** con la información del usuario (nombre y puntuación).
-   * El **NavBar** es visible en todas las páginas y cambia su contenido según si hay un usuario registrado o no.
+* Puntuación acumulada
 
-2. **Sistema de Usuario**:
+* Navegación entre páginas:
+   - WelcomePage
+   - GameSelector
+   - Game
+   - UserProfile
 
-   * Los usuarios pueden registrarse con un nombre de usuario y contraseña.
-   * El sistema calcula el total de partidas jugadas (`numPartidas`) basado en las estadísticas de cada tipo de juego (`numPAdivina`, `numPNombre`, `numPReloj`).
-   * La puntuación máxima (`maxPoints`) y el número de partidas jugadas se muestran en el **UserProfile**.
+* Integración con API RAWG:
+   - Carga dinámica de videojuegos
+   - Selección aleatoria de juegos
+   - Actualización de lista en cada partida
 
-3. **Componentes y Navegación**:
+* Modos de juego:
+   - Adivina por la portada
+   - Adivina el título correcto
+
+* Interfaz interactiva:
+   - Sistema de pistas progresivas
+   - Animaciones y efectos visuales
+   - Mensajes dinámicos (correcto/incorrecto)
+
+* Diseño responsive y moderno:
+   - Glassmorphism
+   - Modo claro y oscuro
+   - Layout adaptable a móvil, tablet y escritorio
+
+### Funcionalidades extra
+* Cambio de tema desde el footer
+
+* URL personalizada del perfil (/user-profile?user=Nombre)
+
+* Edición del nombre con validación avanzada
+
+* Actualización automática de la URL tras editar el nombre
+
+* Menú hamburguesa responsive
+
+* Animaciones en mensajes y pistas
+
+
+### Tecnologías utilizadas
+* React + Vite
+
+* React Router
+
+* Context API
+
+* JavaScript 
+
+* CSS
+
+* API RAWG
+
+* GitHub
+
+* Visual Studio Code
+
+* Copilot (explicaciones y documentación)
+
+* Netlify
+
+### Demo en vivo
+
+Repositorio: https://github.com/Danielestoj/
+
+Web:
+
+### Estructura del proyecto
+
+project-root/
+│
+├── .env
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md
+├── vite.config.js
+│
+├── src/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── Data.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   │
+│   ├── assets/
+│   │   
+│   │
+│   ├── components/
+│   │   ├── Context/
+│   │   │   ├── GameDataContext.jsx
+│   │   │   └── UserContext.jsx
+│   │   │
+│   │   ├── Footer/
+│   │   │   ├── Footer.jsx
+│   │   │   └── Footer.css
+│   │   │
+│   │   ├── Game/
+│   │   │   ├── Game.jsx
+│   │   │   ├── Game.css
+│   │   │   ├── AnswerInput.jsx
+│   │   │   ├── ImageReveal.jsx
+│   │   │   └── OptionsInput.jsx
+│   │   │
+│   │   ├── GameSelector/
+│   │   │   ├── GameSelector.jsx
+│   │   │   └── GameSelector.css
+│   │   │
+│   │   ├── Header/
+│   │   │   ├── Header.jsx
+│   │   │   └── Header.css
+│   │
+│   ├── pages/
+│   │   ├── UserProfile/
+│   │   │   ├── UserProfile.jsx
+│   │   │   └── UserProfile.css
+│   │   │
+│   │   ├── WelcomePage/
+│   │       ├── WelcomePage.jsx
+│   │       └── WelcomePage.css
+│
+└── public/
+    
 
-   * Usamos **React Router** para la navegación entre las páginas:
 
-     * **WelcomePage**: Página de bienvenida donde el usuario puede iniciar sesión, registrarse o entrar como invitado.
-     * **GameSelector**: Página con diferentes juegos para que el usuario seleccione.
-     * **UserProfile**: Página donde el usuario puede ver su perfil con información como nombre de usuario, puntuación y estadísticas de juegos.
+### Uso de la API RAWG
+La aplicación obtiene videojuegos reales mediante la API de RAWG.
 
-4. **NavBar**:
+* Datos utilizados:
+   - Nombre del juego
+   - Imagen de portada
+   - Plataformas
+   -  Géneros
+   - Metacritic
+   - Fecha de lanzamiento
 
-   * El **NavBar** muestra siempre el nombre del usuario y los puntos, y tiene un botón para el **Log-Out**.
-   * En la **WelcomePage**, el botón de **Iniciar sesión** se oculta automáticamente.
-   * Al hacer clic en el nombre del usuario en el **NavBar**, se redirige al perfil del usuario.
+* Lógica implementada:
+   - Peticiones dinámicas con fetch
+   - Selección aleatoria de página y juego
+   - Regeneración de lista al iniciar cada partida
+   - Reutilización de la lista para cambiar de juego sin recargar
+   - Sistema de pistas
+   - En el modo Adivina por la portada, el jugador recibe pistas progresivas:
+      - Metacritic
+      - Plataformas
+      - Géneros
+      - Año de lanzamiento
+      - Solución final
 
-### Descripción de la Implementación
+   - Las pistas aparecen solo cuando existen, evitando contenedores vacíos.
 
-1. **Gestionando el Estado del Usuario**:
+### Responsividad
+El proyecto sigue un enfoque Mobile First y se adapta a:
+   - Móviles (≤ 500px)
+   - Tablets (≤ 780px)
+   - Escritorio (≥ 1080px)
 
-   * El estado del usuario se guarda en **`App.jsx`** en el estado `userData`, que se actualiza al iniciar sesión o al registrarse.
-   * El estado se pasa como props al **NavBar**, **UserProfile** y otras páginas que necesitan información del usuario.
+Incluye:
 
-2. **Cálculo de las Estadísticas**:
+* Navbar adaptable
 
-   * La propiedad `numPartidas` se calcula como la suma de los valores `numPAdivina`, `numPNombre` y `numPReloj`.
-   * Esta suma se realiza en **UserProfile.jsx** utilizando el hook `useEffect` para que se actualice cuando se recibe la información del usuario.
+* Footer responsive
 
-3. **Condicional para Mostrar el Botón de Iniciar Sesión**:
+* GameSelector reorganizado en pantallas pequeñas
 
-   * Usando **`useLocation`** de React Router, se implementó una condición en **NavBar** para que el botón de **Iniciar sesión** se oculte si el usuario está en la página de bienvenida (`/`).
-   * Esto permite que el **NavBar** siempre se muestre, pero sin mostrar el botón de **Iniciar sesión** cuando el usuario está en la página de bienvenida.
+* Inputs y botones fluidos
 
-4. **Redirección a `UserProfile`**:
+### Flujo de diseño
+* Uso de glassmorphism para una estética moderna
 
-   * El nombre del usuario en **NavBar** se convierte en un botón que redirige a la página de **UserProfile**.
-   * En la página de **UserProfile**, el usuario puede ver su nombre, puntos y estadísticas de las partidas jugadas.
+* Animaciones suaves en botones, mensajes y pistas
 
-5. **Log-Out**:
+* Paleta de colores adaptada a modo claro/oscuro
 
-   * Se implementó un sistema de **Log-Out** en el **NavBar** que limpia el estado `userData` en **App.jsx** y redirige al usuario a la página principal (`/`).
+* Iconografía minimalista
 
-### Complicaciones y Soluciones
+* Layout centrado y limpio
 
-1. **Problema con el uso de `useHistory`**:
+### Principios de desarrollo
+* KISS – Mantenerlo simple
 
-   * Al usar **React Router v6**, descubrí que la documentación que utilizaba estaba anticuada y que el hook `useHistory` fue reemplazado por `useNavigate`. Esto obligó a cambiar todas las instancias de `useHistory.push()` a `useNavigate()` para realizar la navegación.
+* DRY – Evitar duplicación de código
 
-2. **Problema con el uso de `Switch`**:
+* Clean Code
 
-   * También en la versión 6 de **React Router**, al igual que el caso anterior, el componente `Switch` fue reemplazado por `Routes`. Tuve que cambiar `Switch` por `Routes` y usar la propiedad `element` en lugar de `component` para definir las rutas.
+* Componentes reutilizables
 
-3. **Problema con las rutas en `App.jsx`**:
+* Context API para estado global
 
-   * Al principio, tuve problemas al intentar redirigir a la página de **UserProfile** porque las rutas estaban mal configuradas (como `/pages/UserProfile/UserProfile`). Solucioné esto asegurándonos de que la ruta fuera simplemente `/user-profile`.
+* Separación clara entre lógica y presentación
 
-4. **Mostrar el `NavBar` Condicionalmente**:
+* Comentarios explicativos en zonas clave
 
-   * Añadimos una funcionalidad para que el **NavBar** mostrara el botón **Iniciar sesión** solo si el usuario no está logueado y no está en la página de bienvenida. Esto se logró utilizando **`useLocation`** para verificar la ruta actual.
+### Entregables
+* Repositorio en GitHub
 
-5. **Cálculo de `numPartidas`**:
+* Documentación completa (README)
 
-   * Se implementó el cálculo de `numPartidas` en **UserProfile.jsx**, sumando las tres propiedades (`numPAdivina`, `numPNombre`, `numPReloj`) y mostrando el resultado en el perfil del usuario.
+* Código modular y comentado
 
-### Mejoras Futuras
+### Retos encontrados
+* Sincronizar el nombre del usuario entre URL, Header y UserProfile
 
-1. **Persistencia de Datos**:
+* Actualizar la URL tras editar el nombre sin recargar la página
 
-   * Actualmente, los datos de los usuarios están almacenados en un array en **Data.jsx**, lo cual no persiste si recargamos la página. Una mejora futura sería implementar el uso de **localStorage** o una base de datos real para almacenar la información del usuario.
+* Evitar que el logo del Header navegara a la ruta incorrecta
 
-2. **Validación y Seguridad**:
+* Reestructurar GameDataProvider para cargar juegos solo cuando se inicia una partida
 
-   * Actualmente, no se están realizando validaciones de contraseñas ni ninguna verificación de seguridad para el inicio de sesión. Sería conveniente agregar validaciones y, en un futuro, integrar un sistema de autenticación más robusto.
+* Manejo de estados múltiples en Game (pistas, intentos, puntos, mensajes)
 
-3. **Estilos Responsivos**:
+### Backlog
+* Añadir ranking global de jugadores
 
-   * Los estilos podrían mejorarse para que la aplicación sea completamente responsiva y se vea bien en dispositivos móviles. Actualmente, el diseño se adapta, pero se podría mejorar aún más.
+* Añadir más modos de juego
 
----
-### Día 2 – Refactorización y Contextos
-El segundo día me centré en mejorar la arquitectura:
+* Mejorar animaciones del modo portada
 
-**Creación de GameDataContext**
-* Moví toda la lógica de la API RAWG a un contexto dedicado:
+* Añadir sonido opcional (acierto/error)
 
-* Carga de juegos
+* Guardar progreso en localStorage
 
-* Selección aleatoria
+* Añadir selector de dificultad
 
-* loadNewGame()
+* Mejorar accesibilidad (A11y)
 
-**Estado global de juegos**
 
-* Limpieza de Game.jsx: Eliminé toda la lógica de fetch y la reemplacé por el contexto. Separé completamente los dos modos de juego.
+### Uso de la IA en el trabajo
 
-* Eliminación de Score.jsx: Integré la puntuación directamente en Game.jsx.
+Principalmente los usos de la IA ha sido tanto como herramienta de aprendizaje como para prototipádos rápidos en el caso de CSS, así como para la resolución de errores que no encontraba el motivo como para avanzar y resolverlo. Normalmente estos errores eran por la falta de conocimientos en herramientas de React y no saber cómo funcionan del todo bien.
 
-* Reorganización de carpetas: Organicé los componentes por áreas funcionales.
+### Tiempos de desarrollo
+Los siguientes tiempos son tiempos aproximados del desarrollo de cada sección puesto que muchos de ellos se ha trabajado en paralelo unos con otros. Los tiempos incluyen el apartado de css de cada apartado.
 
-* Actualización de App.jsx: Añadí GameDataProvider envolviendo toda la aplicación.
+* App:
+   Tiempo Esperado: 30 min
+   Tiempo Real: 15 min
 
-### Día 3 – Correcciones, Estética y Lógica de Juego
-Este día estuvo dedicado a pulir detalles y corregir bugs:
+* Header:
+   Tiempo Esperado: 1 hora
+   Tiempo Real: 1 hora y 30 min
 
-* Creación de Game.css: Saqué todos los estilos específicos del juego desde App.css y creé un CSS modular:
+* Footer:
+   Tiempo Esperado: 10 min
+   Tiempo Real: 10 min
 
-* Corrección del bug del modo “título”: Las opciones no aparecían para usuarios registrados porque dependían de imageLoaded.Eliminé esa condición para que las opciones aparezcan siempre.
+* Modo claro/oscuro:
+   Tiempo Esperado: 45 min
+   Tiempo Real: 40 min
 
-* Separación total de modos: Ahora cada modo tiene su lógica y UI independiente.
+* Game y módulos:
+   Tiempo Esperado: 10 horas
+   Tiempo Real: 15 horas
 
-* Corrección del Header. Redirección tanto del título como del Logout a la WelcomePage.
+* WelcomePage:
+   Tiempo Esperado: 3 horas
+   Tiempo Real: 4 horas
 
+* GameSelector:
+   Tiempo Esperado: 1 hora
+   Tiempo Real: 1 hora
 
-**Mejoras Futuras**
-* Persistencia real de usuarios (localStorage o base de datos).
+* Contexts:
+   Tiempo Esperado: 3 horas
+   Tiempo Real: 2 horas y media
 
-* Validación de contraseñas y seguridad.
+* UserProfile:
+   Tiempo Esperado: 1 hora
+   Tiempo Real: 50 min.
 
-* Nuevos modos de juego.
+* Tests
+   Tiempo Esperado: 1 hora
+   Tiempo Real: 1 hora
 
-* Animaciones avanzadas (shake al fallar, efectos al acertar).
+* README:
+   Tiempo Esperado: 1 hora
+   Tiempo Real: 1 hora
 
-* Sonidos y feedback visual.
+* Netlify:
+   Tiempo Esperado: 30 min
+   Tiempo Real: 10 min
 
+* Mock Data:
+   Tiempo Esperado: 10 min
+   Tiempo Real: 20 min
 
-----
-### NOTAS PARA EL DIA 4
-* Revisar requisitos para comprobar que todo se cumpla
-
-* Hacer mini imprevisto de tiempo en cada sección
-
-* Hacer modo dia/noche
-
-* Modificar profile para que aparezca la ID o el nombre del usuario
 

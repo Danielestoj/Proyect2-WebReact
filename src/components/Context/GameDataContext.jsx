@@ -1,19 +1,16 @@
 // src/components/Context/GameDataContext.jsx
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const GameDataContext = createContext();
 
 export function GameDataProvider({ children }) {
   const [games, setGames] = useState([]);
   const [game, setGame] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  // Cargar juegos al inicio
-  useEffect(() => {
-    loadGames();
-  }, []);
 
-  const loadGames = async () => {
+  //Cargar lista nueva de juegos (se llamará desde GameSelector)
+  const loadGameList = async () => {
     setLoading(true);
 
     const randomPage = Math.floor(Math.random() * 30) + 1;
@@ -22,16 +19,17 @@ export function GameDataProvider({ children }) {
       `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&page_size=30&page=${randomPage}`
     );
     const data = await res.json();
-    console.log(data.results);
 
     setGames(data.results);
 
+    // Elegir un juego aleatorio
     const random = data.results[Math.floor(Math.random() * data.results.length)];
     setGame(random);
 
     setLoading(false);
   };
 
+  // ⭐ Cambiar a un juego nuevo dentro de la misma lista
   const loadNewGame = () => {
     if (!games.length) return;
 
@@ -47,6 +45,7 @@ export function GameDataProvider({ children }) {
         game,
         loading,
         loadNewGame,
+        loadGameList, 
       }}
     >
       {children}

@@ -82,6 +82,29 @@
 }
 
 /* ============================= */
+/* MENSAJE                    */
+/* ============================= */
+
+.game-message {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.3s ease;
+  margin: 0;
+}
+
+/* Verde para correcto */
+.game-message.correct {
+  color: #4caf50; /* verde elegante */
+}
+
+/* Rojo para incorrecto */
+.game-message.incorrect {
+  color: #ff4f4f; /* rojo que ya usas en errores */
+}
+
+
+/* ============================= */
 /* PISTAS                     */
 /* ============================= */
 
@@ -99,7 +122,7 @@
 }
 
 /* ============================= */
-/* 📱 RESPONSIVE 780px           */
+/* RESPONSIVE 780px           */
 /* ============================= */
 
 @media (max-width: 780px) {
@@ -118,7 +141,7 @@
 }
 
 /* ============================= */
-/* 📱 RESPONSIVE 500px           */
+/* RESPONSIVE 500px           */
 /* ============================= */
 
 @media (max-width: 500px) {

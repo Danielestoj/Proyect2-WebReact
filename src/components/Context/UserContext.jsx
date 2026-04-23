@@ -1,9 +1,10 @@
 import { createContext, useState } from "react";
-import { users } from "../../Data";
+import { users as initialUsers } from "../../Data";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const [users, setUsers] = useState(initialUsers); // ⭐ Ahora sí existe
   const [user, setUser] = useState(null);
 
   // LOGIN
@@ -12,7 +13,7 @@ export const UserProvider = ({ children }) => {
       (u) => u.name === username && u.pass === password
     );
     if (found) {
-      setUser({ ...found }); // Copia para evitar mutaciones
+      setUser({ ...found });
       return true;
     }
     return false;
@@ -44,7 +45,7 @@ export const UserProvider = ({ children }) => {
       numPNombre: 0,
     };
 
-    users.push(newUser);
+    setUsers([...users, newUser]); // ⭐ Ahora sí actualiza React
     setUser({ ...newUser });
     return newUser;
   };
@@ -58,10 +59,11 @@ export const UserProvider = ({ children }) => {
   const updateUserPoints = (name, newPoints) => {
     const index = users.findIndex((u) => u.name === name);
     if (index !== -1) {
-      users[index].maxPoints = newPoints;
+      const updated = [...users];
+      updated[index].maxPoints = newPoints;
 
-      // Actualizar estado del usuario
-      setUser({ ...users[index] });
+      setUsers(updated);
+      setUser({ ...updated[index] });
     }
   };
 
@@ -70,12 +72,13 @@ export const UserProvider = ({ children }) => {
     const index = users.findIndex((u) => u.name === name);
     if (index === -1) return;
 
-    // Actualizar mock
-    if (mode === "portada") users[index].numPAdivina += 1;
-    if (mode === "titulo") users[index].numPNombre += 1;
+    const updated = [...users];
 
-    // Actualizar estado del usuario para que React re-renderice
-    setUser({ ...users[index] });
+    if (mode === "portada") updated[index].numPAdivina += 1;
+    if (mode === "titulo") updated[index].numPNombre += 1;
+
+    setUsers(updated);
+    setUser({ ...updated[index] });
   };
 
   return (
@@ -83,6 +86,8 @@ export const UserProvider = ({ children }) => {
       value={{
         user,
         setUser,
+        users,
+        setUsers,
         login,
         loginGuest,
         register,

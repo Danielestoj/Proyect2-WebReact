@@ -13,6 +13,7 @@ function Header() {
   const goHome = () => {
     if (user) {
       navigate("/game-selector");   // Usuario registrado → selector de juegos
+      console.log("al home");
     } else {
       navigate("/");                // Invitado → WelcomePage
     }
@@ -20,7 +21,7 @@ function Header() {
   };
 
   const goToProfile = () => {
-    navigate("/user-profile");
+    navigate(`/user-profile?user=${user.name}`);
     setOpen(false); // cerrar menú móvil si estaba abierto
   };
 
@@ -34,9 +35,9 @@ function Header() {
     <>
       <nav className="navbar">
         <div className="navbar-left">
-          <Link className="navbar-logo" onClick={goHome}>
+          <span className="navbar-logo" onClick={goHome}>
             GameGuess
-          </Link>
+          </span>
         </div>
 
         {/* Menú normal (desktop) */}
