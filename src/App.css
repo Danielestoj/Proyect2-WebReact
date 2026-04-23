@@ -34,10 +34,26 @@ body {
   min-height: 100vh;
 }
 
+body.light-mode {
+  --bg-gradient: linear-gradient(135deg, #2d393d, #5493a1, #6a8dd9);
+
+  --primary: #38238a;
+  --primary-hover: #5938d8;
+  --accent: #ff4fa3;
+
+  --glass: rgba(8, 7, 7, 0.05);
+  --glass-strong: rgba(27, 25, 25, 0.25);
+
+  --text: bold #1a1a1a;
+  --shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
 #root {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center
 }
 
 /* ============================= */

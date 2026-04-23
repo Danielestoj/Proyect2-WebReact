@@ -6,9 +6,11 @@ import GameSelector from './components/GameSelector/GameSelector';
 import NavBar from './components/Header/Header';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Game from './components/Game/Game';
+import Footer from "./components/Footer/Footer";
 
 import { UserProvider } from "./components/Context/UserContext";
 import { GameDataProvider } from "./components/Context/GameDataContext";
+
 
 import './App.css';
 
@@ -25,7 +27,11 @@ function App() {
             <Route path="/user-profile" element={<UserProfile />} />
             <Route path="/game" element={<Game />} />
           </Routes>
+
+          <Footer />
+          
         </Router>
+        
       </GameDataProvider>
     </UserProvider>
   );

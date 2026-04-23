@@ -2,6 +2,8 @@
   width: 80%;
   margin: 0 auto; /* SIEMPRE CENTRADO */
   margin-top: 120px;
+  display: flex;
+  justify-content: center;
 }
 
 .game-container {
@@ -35,7 +37,7 @@
   padding: 20px;
   border-radius: var(--radius);
 
-  width: 35%;        
+  width: 40%;        
   justify-content: center;
   gap: 10px;
 }
