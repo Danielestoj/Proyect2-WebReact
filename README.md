@@ -38,7 +38,7 @@ Creado por Daniel Estupiñán Ojeda para la Escuela de Programadores IV.
 * Interfaz interactiva:
    - Sistema de pistas progresivas
    - Animaciones y efectos visuales
-   - Mensajes dinámicos (correcto/incorrecto)
+   - Mensajes dinámicos temporales (correcto/incorrecto)
 
 * Diseño responsive y moderno:
    - Glassmorphism
@@ -57,6 +57,8 @@ Creado por Daniel Estupiñán Ojeda para la Escuela de Programadores IV.
 * Menú hamburguesa responsive
 
 * Animaciones en mensajes y pistas
+
+* Página con error 404
 
 
 ### Tecnologías utilizadas
@@ -82,9 +84,9 @@ Creado por Daniel Estupiñán Ojeda para la Escuela de Programadores IV.
 
 ### Demo en vivo
 
-Repositorio: https://github.com/Danielestoj/
+Repositorio: https://github.com/Danielestoj/Proyect2-WebReact
 
-Web:
+Web: https://project2-webreact.netlify.app/
 
 ### Estructura del proyecto
 
@@ -97,7 +99,12 @@ project-root/
 ├── package.json
 ├── package-lock.json
 ├── README.md
+├── setupTest.js
+├── spec.md
 ├── vite.config.js
+│
+├──__test__/
+│   ├──app.test.jsx
 │
 ├── src/
 │   ├── App.jsx
@@ -130,17 +137,21 @@ project-root/
 │   │   │   └── GameSelector.css
 │   │   │
 │   │   ├── Header/
-│   │   │   ├── Header.jsx
-│   │   │   └── Header.css
+│   │       ├── Header.jsx
+│   │       └── Header.css
 │   │
 │   ├── pages/
-│   │   ├── UserProfile/
-│   │   │   ├── UserProfile.jsx
-│   │   │   └── UserProfile.css
-│   │   │
-│   │   ├── WelcomePage/
-│   │       ├── WelcomePage.jsx
-│   │       └── WelcomePage.css
+│       ├── UserProfile/
+│       │   ├── UserProfile.jsx
+│       │   └── UserProfile.css
+│       │
+│       ├── WelcomePage/
+│       │   ├── WelcomePage.jsx
+│       │   └── WelcomePage.css
+│       │
+│       ├── Error404/
+│           ├── Error404.jsx
+│           └── Error404.css
 │
 └── public/
     
@@ -243,9 +254,7 @@ Incluye:
 
 * Guardar progreso en localStorage
 
-* Añadir selector de dificultad
-
-* Mejorar accesibilidad (A11y)
+* Añadir límite máximo a cada modo para que no sea infinito 
 
 
 ### Uso de la IA en el trabajo
@@ -272,8 +281,8 @@ Los siguientes tiempos son tiempos aproximados del desarrollo de cada sección p
    Tiempo Real: 40 min
 
 * Game y módulos:
-   Tiempo Esperado: 10 horas
-   Tiempo Real: 15 horas
+   Tiempo Esperado: 15 horas
+   Tiempo Real: 20 horas
 
 * WelcomePage:
    Tiempo Esperado: 3 horas
@@ -307,4 +316,6 @@ Los siguientes tiempos son tiempos aproximados del desarrollo de cada sección p
    Tiempo Esperado: 10 min
    Tiempo Real: 20 min
 
-
+* Error404:
+   Tiempo Esperado: 20 min
+   Tiempo Real: 20 min

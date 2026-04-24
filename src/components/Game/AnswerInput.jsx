@@ -1,27 +1,36 @@
 import React, { useState } from "react";
 
-function AnswerInput({ onSubmit }) {
-  const [input, setInput] = useState("");
+function AnswerSelect({ games, onSubmit }) {
+  const [selected, setSelected] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(input);
-    setInput("");
+    if (!selected) return;
+    onSubmit(selected);
+    setSelected("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input style={{ width: "500px" }}
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Escribe el juego"
-      />
-      <button style={{ marginTop: "20px", width: "50%" }} type="submit">
+    <form className="answer-select-form" onSubmit={handleSubmit}>
+      <select
+        className="answer-select"
+        value={selected}
+        onChange={(e) => setSelected(e.target.value)}
+      >
+        <option value="">Selecciona un juego</option>
+
+        {games.map((g) => (
+          <option key={g.id} value={g.name}>
+            {g.name}
+          </option>
+        ))}
+      </select>
+
+      <button className="answer-select-btn" type="submit">
         Enviar
       </button>
     </form>
   );
 }
 
-export default AnswerInput;
+export default AnswerSelect;

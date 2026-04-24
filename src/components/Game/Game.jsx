@@ -23,6 +23,18 @@ function Game() {
   const [hints, setHints] = useState([]);
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  // Respuestas incorrectas
+  const [wrongAnswers, setWrongAnswers] = useState([]);
+
+  // Juegos filtrados + mezclados
+  const [shuffledGames, setShuffledGames] = useState([]);
+
+  // Mezclar juegos
+  const shuffleGames = () => {
+    const shuffled = [...games].sort(() => Math.random() - 0.5);
+    setShuffledGames(shuffled);
+  };
+
   // Reset al cambiar de juego
   useEffect(() => {
     if (game) {
@@ -30,9 +42,23 @@ function Game() {
       setMessage("");
       setPoints(0);
       setHints([]);
-      setImageLoaded(false); // ← IMPORTANTE
+      setWrongAnswers([]);
+      setImageLoaded(false);
+
+      shuffleGames();
     }
   }, [game]);
+
+  // Ocultar mensaje tras 3s
+  useEffect(() => {
+    if (!message) return;
+
+    const timer = setTimeout(() => {
+      setMessage("");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [message]);
 
   // Añadir pistas (solo modo portada)
   const addHint = () => {
@@ -93,8 +119,13 @@ function Game() {
       return;
     }
 
-    // FALLA
+    // INCORRECTO
     setMessage("Incorrecto");
+
+    // Guardar respuesta incorrecta
+    setWrongAnswers((prev) =>
+      prev.includes(answer) ? prev : [...prev, answer]
+    );
 
     if (mode === "portada") {
       const newAttempts = attempts - 1;
@@ -116,13 +147,28 @@ function Game() {
 
   if (!game) return <p>Cargando juegos...</p>;
 
+  // Filtrar opciones eliminando las incorrectas
+  const filteredGames = shuffledGames.filter(
+    (g) => !wrongAnswers.includes(g.name)
+  );
+
   return (
     <div className="game-container">
+      {/* Pantalla de carga superpuesta mientras no se haya cargado la imagen */}
+      {!imageLoaded && (
+        <div className="loading-screen">
+          <div className="spinner"></div>
+          <p>Cargando...</p>
+        </div>
+      )}
+
       <ImageReveal
         image={game.background_image}
         attempts={attempts}
         forceClear={message === "¡Correcto!"}
-        onLoad={() => setImageLoaded(true)} // ← AHORA FUNCIONA
+        onLoad={() => {
+          setImageLoaded(true);
+        }}
       />
 
       {/* PUNTOS */}
@@ -134,26 +180,54 @@ function Game() {
       {mode === "portada" && (
         <>
           <p className="game-attempts">Intentos restantes: {attempts}</p>
-          <p className={`game-message ${
-            message === "¡Correcto!" ? "correct" :
-            message === "Incorrecto" ? "incorrect" :
-            ""
-          }`}
+
+          <p
+            className={`game-message ${
+              message === "¡Correcto!"
+                ? "correct"
+                : message === "Incorrecto"
+                ? "incorrect"
+                : ""
+            }`}
           >
             {message}
           </p>
 
-          <AnswerInput onSubmit={checkAnswer} />
+          <div className="pistas-incorrectas">
+            {/* PISTAS */}
+            {hints.length > 0 && (
+              <div className="wrong-answers-box">
+                {hints.map((h, i) => (
+                  <p key={i}>
+                    {i === 4 ? (
+                      <span style={{ color: "#28a745", fontWeight: "bold" }}>
+                        {h}
+                      </span>
+                    ) : (
+                      <>
+                        <strong>Pista {i + 1}:</strong> {h}
+                      </>
+                    )}
+                  </p>
+                ))}
+              </div>
+            )}
 
-          {hints.length > 0 && (
-            <div className="hints-box">
-              {hints.map((h, i) => (
-                <p key={i}>
-                  <strong>Pista {i + 1}:</strong> {h}
-                </p>
-              ))}
-            </div>
-          )}
+            {/* RESPUESTAS INCORRECTAS */}
+            {wrongAnswers.length > 0 && (
+              <div className="wrong-answers-box">
+                <h3>Respuestas incorrectas:</h3>
+                <ul>
+                  {wrongAnswers.map((w, i) => (
+                    <li key={i}>{w}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {/* SELECT FILTRADO */}
+          <AnswerInput games={filteredGames} onSubmit={checkAnswer} />
         </>
       )}
 
@@ -164,14 +238,12 @@ function Game() {
         <div className="options-grid">
           <OptionsInput
             key={game.id}
-            games={games}
+            games={filteredGames}
             correctGame={game}
             onSelect={checkAnswer}
           />
         </div>
       )}
-
-      
     </div>
   );
 }

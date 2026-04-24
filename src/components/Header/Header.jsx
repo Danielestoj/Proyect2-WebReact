@@ -13,7 +13,6 @@ function Header() {
   const goHome = () => {
     if (user) {
       navigate("/game-selector");   // Usuario registrado → selector de juegos
-      console.log("al home");
     } else {
       navigate("/");                // Invitado → WelcomePage
     }

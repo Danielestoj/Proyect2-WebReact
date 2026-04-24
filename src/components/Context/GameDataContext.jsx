@@ -29,7 +29,7 @@ export function GameDataProvider({ children }) {
     setLoading(false);
   };
 
-  // ⭐ Cambiar a un juego nuevo dentro de la misma lista
+  // Cambiar a un juego nuevo dentro de la misma lista
   const loadNewGame = () => {
     if (!games.length) return;
 

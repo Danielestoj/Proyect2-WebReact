@@ -142,10 +142,13 @@ test("Muestra '¡Correcto!' cuando la respuesta es correcta", () => {
     </BrowserRouter>
   );
 
-  const input = screen.getByRole("textbox");
-  fireEvent.change(input, { target: { value: "Halo" } });
+  // Seleccionar opción en el <select>
+  const select = screen.getByRole("combobox");
+  fireEvent.change(select, { target: { value: "Halo" } });
 
+  // Enviar
   fireEvent.click(screen.getByText("Enviar"));
 
+  // Comprobar mensaje
   expect(screen.getByText("¡Correcto!")).toBeInTheDocument();
 });

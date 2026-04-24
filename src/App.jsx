@@ -7,6 +7,7 @@ import NavBar from './components/Header/Header';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Game from './components/Game/Game';
 import Footer from "./components/Footer/Footer";
+import Error404 from './pages/Error404/Error404';
 
 import { UserProvider } from "./components/Context/UserContext";
 import { GameDataProvider } from "./components/Context/GameDataContext";
@@ -26,6 +27,7 @@ function App() {
             <Route path="/game-selector" element={<GameSelector />} />
             <Route path="/user-profile" element={<UserProfile />} />
             <Route path="/game" element={<Game />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
 
           <Footer />

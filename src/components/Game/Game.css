@@ -50,6 +50,119 @@
   font-size: 16px;
 }
 
+.answer-select-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* SELECT PRINCIPAL */
+.answer-select {
+  width: 500px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  background: var(--glass);
+  color: var(--text);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.answer-select:hover {
+  background: var(--glass-strong);
+}
+
+.answer-select:focus {
+  outline: 2px solid var(--primary);
+}
+
+/* BOTÓN */
+.answer-select-btn {
+  width: 50%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.answer-select-btn:hover {
+  background: var(--primary-hover);
+}
+
+.answer-select option {
+  background-color: #453668;
+  color: white;
+  font-size: 18px;
+  padding: 8px 12px;
+}
+
+.pistas-incorrectas{
+  display: flex;
+  flex-direction: row;
+  gap:40px;
+  justify-content: space-around;
+  align-items: stretch
+}
+
+.wrong-answers-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: var(--glass-strong) ;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.wrong-answers-box h3 {
+  margin: 0 0 10px 0;
+  color: #ff4f4f;
+}
+
+.wrong-answers-box ul {
+  list-style: disc;
+  font-size: 20px;
+}
+
+.wrong-answers-box ul li {
+  margin-top: 20px;
+
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  color: white;
+  font-size: 20px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 /* ============================= */
 /* BOTONES DE OPCIONES        */
 /* ============================= */
