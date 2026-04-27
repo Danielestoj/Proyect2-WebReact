@@ -1,3 +1,8 @@
+.game-selector-box{
+  margin-top:200px;
+  min-height: 60vh;
+}
+
 .game-selector {
   display: flex;
   flex-direction: row;
@@ -6,7 +11,13 @@
   height: 300px;
   justify-content: center;
   gap: 40px;
+  padding:40px;
   margin :0px 20px 20px 20px;
+  background: var(--glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  
 }
 
 .game-box {

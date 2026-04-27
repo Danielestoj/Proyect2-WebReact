@@ -42,6 +42,7 @@
 .user-id {
   font-weight: bold;
   color: var(--primary);
+  font-size: 25px;
 }
 
 .edit-icon {

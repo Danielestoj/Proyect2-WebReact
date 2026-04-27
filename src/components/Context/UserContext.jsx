@@ -4,7 +4,7 @@ import { users as initialUsers } from "../../Data";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState(initialUsers); // ⭐ Ahora sí existe
+  const [users, setUsers] = useState(initialUsers); // Ahora sí existe
   const [user, setUser] = useState(null);
 
   // LOGIN
@@ -45,7 +45,7 @@ export const UserProvider = ({ children }) => {
       numPNombre: 0,
     };
 
-    setUsers([...users, newUser]); // ⭐ Ahora sí actualiza React
+    setUsers([...users, newUser]); // Ahora sí actualiza React
     setUser({ ...newUser });
     return newUser;
   };
