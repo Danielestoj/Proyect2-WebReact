@@ -55,6 +55,7 @@
     width: 100%;
     align-items: center; /* CENTRA LOS CUADRADOS */
     gap: 25px;
+    height: 100%
   }
 
   .game-box {
