@@ -88,6 +88,16 @@ Repositorio: https://github.com/Danielestoj/Proyect2-WebReact
 
 Web: https://project2-webreact.netlify.app/
 
+### Deploy en Netlify
+
+Este proyecto está configurado para desplegarse en Netlify utilizando Vite como herramienta de build.
+
+### 🔧 Configuración de Build
+- **Build command:** `npm run build`
+- **Publish directory:** `dist`
+
+
+
 ### Estructura del proyecto
 
 project-root/
