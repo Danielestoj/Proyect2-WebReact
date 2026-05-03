@@ -1,0 +1,126 @@
+.gameSelectorBox {
+  margin-top: 200px;
+  min-height: 60vh;
+}
+
+.gameSelector {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  width: 900px;
+  height: 300px;
+  justify-content: center;
+  padding: 40px;
+  margin: 0px 20px 20px 20px;
+  background: var(--glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.gameBox {
+  background: var(--glass-strong);
+  padding: 20px;
+  border-radius: var(--radius);
+  width: 450px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.gameBox h2 {
+  color: var(--primary);
+}
+
+.gameBox p {
+  color: var(--text);
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+
+.searchButton {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.finderButtonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.finderButton {
+  background: var(--glass-strong); /* Igual que los módulos */
+  padding: 20px 40px;
+  border-radius: var(--radius-lg);
+  border: none;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.finderButton:hover {
+  transform: scale(1.05);
+  background: var(--glass);
+}
+
+
+
+/* ============================= */
+/* RESPONSIVE 1024px            */
+/* ============================= */
+@media (max-width: 1024px) {
+  .gameSelector {
+    width: 100%;
+    height: auto;
+    padding: 30px;
+  }
+
+  .gameBox {
+    width: 400px;
+  }
+}
+
+/* ============================= */
+/* RESPONSIVE 780px             */
+/* ============================= */
+@media (max-width: 780px) {
+  .gameSelector {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 25px;
+    height: auto;
+  }
+
+  .gameBox {
+    width: 85%;
+  }
+}
+
+/* ============================= */
+/* RESPONSIVE 500px             */
+/* ============================= */
+@media (max-width: 500px) {
+  .gameSelector {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .gameBox {
+    width: 85%;
+    padding: 20px;
+  }
+}

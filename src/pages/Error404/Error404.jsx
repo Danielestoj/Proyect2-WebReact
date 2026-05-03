@@ -1,39 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Error404.css";
+import styles from "./Error404.module.css";
 
 function Error404() {
   const navigate = useNavigate();
 
-  const [contador, useContador] = useState(5);
+  const [contador, setContador] = useState(5);
 
+  // Contador regresivo
   useEffect(() => {
-    const timer = setInterval(() => {
-      useContador((prev) => prev - 1);
+    const interval = setInterval(() => {
+      setContador((prev) => prev - 1);
     }, 1000);
-    }, []);
 
+    return () => clearInterval(interval);
+  }, []);
+
+  // Redirección automática
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/"); // ← WelcomePage
+      navigate("/");
     }, 5000);
 
     return () => clearTimeout(timer);
   }, [navigate]);
 
   return (
-    <div className="notfound-container">
-      <h1 className="notfound-code">404</h1>
-      <h2 className="notfound-title">Página no encontrada</h2>
-      <p className="notfound-text">
+    <div className={styles.notfoundContainer}>
+      <h1 className={styles.notfoundCode}>404</h1>
+      <h2 className={styles.notfoundTitle}>Página no encontrada</h2>
+
+      <p className={styles.notfoundText}>
         Parece que te has perdido. Esta ruta no existe.
       </p>
 
-      <Link to="/" className="notfound-button">
+      <Link to="/" className={styles.notfoundButton}>
         Volver al inicio
       </Link>
 
-      <p className="notfound-autoredirect">
+      <p className={styles.notfoundAutoredirect}>
         Serás redirigido automáticamente en {contador} segundos…
       </p>
     </div>

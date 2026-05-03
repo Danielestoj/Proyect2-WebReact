@@ -1,4 +1,4 @@
-.user-profile {
+.userProfile {
   margin-top: 100px;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
   width: 100%;
 }
 
-.profile-info {
+.profileInfo {
   background: var(--glass);
   padding: 25px;
   width: 80%;
@@ -19,50 +19,50 @@
   text-align: center;
 }
 
-.profile-info h2 {
+.profileInfo h2 {
   color: var(--primary);
 }
 
-.profile-info p {
+.profileInfo p {
   font-size: 18px;
 }
 
-.go-back-button{
-  margin-top:20px;
+.goBackButton {
+  margin-top: 20px;
   font-size: 18px;
 }
 
-.user-id-row {
+.userIdRow {
   display: flex;
   align-items: center;
   justify-content: space-around;
   gap: 10px;
 }
 
-.user-id {
+.userId {
   font-weight: bold;
   color: var(--primary);
   font-size: 25px;
 }
 
-.edit-icon {
+.editIcon {
   cursor: pointer;
   font-size: 1.2rem;
   transition: var(--transition);
 }
 
-.edit-icon:hover {
+.editIcon:hover {
   transform: scale(1.15);
 }
 
-.edit-container {
+.editContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.edit-input {
+.editInput {
   padding: 15px 10px;
   border-radius: var(--radius);
   border: 1px solid var(--glass-strong);
@@ -71,7 +71,8 @@
   font-size: 16px;
 }
 
-.save-btn, .cancel-btn {
+.saveBtn,
+.cancelBtn {
   padding: 15px 30px;
   border-radius: var(--radius);
   border: none;
@@ -79,31 +80,31 @@
   transition: var(--transition);
 }
 
-.save-btn {
+.saveBtn {
   background: var(--primary);
   color: white;
 }
 
-.save-btn:hover {
+.saveBtn:hover {
   background: var(--primary-hover);
 }
 
-.cancel-btn {
+.cancelBtn {
   background: #ff4f4f;
   color: white;
 }
 
-.cancel-btn:hover {
+.cancelBtn:hover {
   background: #d63c3c;
 }
 
-.error-msg {
+.errorMsg {
   color: #ff4f4f;
   margin-top: 5px;
   font-weight: bold;
 }
 
-.edit-buttons {
+.editButtons {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;

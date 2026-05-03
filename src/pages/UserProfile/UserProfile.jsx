@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import './UserProfile.css';
+import React, { useContext, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import styles from "./UserProfile.module.css";
 import { UserContext } from "../../components/Context/UserContext";
 
 function UserProfile() {
@@ -28,25 +28,20 @@ function UserProfile() {
       return;
     }
 
-    // Comprobar si ya existe otro usuario con ese nombre
-    const exists = users.some(u => u.name === newName && u !== user);
+    const exists = users.some((u) => u.name === newName && u !== user);
     if (exists) {
       setError("Ese nombre ya está en uso.");
       return;
     }
 
-    // Actualizar usuario en el contexto
     const updatedUser = { ...user, name: newName };
     setUser(updatedUser);
 
-    // Actualizar lista de usuarios
-    const updatedUsers = users.map(u =>
+    const updatedUsers = users.map((u) =>
       u === user ? updatedUser : u
     );
     setUsers(updatedUsers);
 
-    //  ACTUALIZAR LA URL CON EL NUEVO NOMBRE
-    // Esto hace que la barra del navegador cambie sin recargar la página
     navigate(`/user-profile?user=${newName}`, { replace: true });
 
     setError("");
@@ -54,24 +49,20 @@ function UserProfile() {
   };
 
   return (
-    <div className="user-profile">
+    <div className={styles.userProfile}>
       <h1>Perfil de Usuario</h1>
 
-      <div className="profile-info">
-
-        {/* ID del usuario */}
-        <div className="user-id-row">
+      <div className={styles.profileInfo}>
+        <div className={styles.userIdRow}>
           <h2>ID del usuario: </h2>
 
           {!isEditing ? (
             <>
-              {/* MOSTRAR SIEMPRE user.name, NO userParam */}
-              <span className="user-id">{user.name}</span>
+              <span className={styles.userId}>{user.name}</span>
 
-              {/* Icono solo si NO es Invitado */}
               {user.name !== "Invitado" && (
                 <span
-                  className="edit-icon"
+                  className={styles.editIcon}
                   onClick={() => setIsEditing(true)}
                   title="Editar nombre"
                 >
@@ -80,7 +71,7 @@ function UserProfile() {
               )}
             </>
           ) : (
-            <div className="edit-container">
+            <div className={styles.editContainer}>
               <input
                 type="text"
                 value={newName}
@@ -88,17 +79,25 @@ function UserProfile() {
                   setNewName(e.target.value);
                   setError("");
                 }}
-                className="edit-input"
+                className={styles.editInput}
               />
-              <div className="edit-buttons">
-                <button className="save-btn" onClick={handleSave}>Guardar</button>
-                <button className="cancel-btn" onClick={() => setIsEditing(false)}>Cancelar</button>
+
+              <div className={styles.editButtons}>
+                <button className={styles.saveBtn} onClick={handleSave}>
+                  Guardar
+                </button>
+                <button
+                  className={styles.cancelBtn}
+                  onClick={() => setIsEditing(false)}
+                >
+                  Cancelar
+                </button>
               </div>
             </div>
           )}
         </div>
 
-        {error && <p className="error-msg">{error}</p>}
+        {error && <p className={styles.errorMsg}>{error}</p>}
 
         <p>Puntuación: {user.maxPoints}</p>
         <p>Partidas Jugadas: {user.numPAdivina + user.numPNombre}</p>
@@ -106,7 +105,10 @@ function UserProfile() {
         <p>Partidas Adivina el Título Correcto: {user.numPNombre}</p>
       </div>
 
-      <button onClick={() => navigate('/game-selector')} className="go-back-button">
+      <button
+        onClick={() => navigate("/game-selector")}
+        className={styles.goBackButton}
+      >
         Volver a GameSelector
       </button>
     </div>

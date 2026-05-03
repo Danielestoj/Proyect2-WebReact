@@ -2,7 +2,7 @@
 /* GAME LAYOUT                */
 /* ============================= */
 
-.game-container {
+.gameContainer {
   margin-top: 50px;
   width: 90%;
   max-width: 900px;
@@ -25,7 +25,7 @@
 /* IMAGEN DEL JUEGO           */
 /* ============================= */
 
-.game-container img {
+.gameContainer img {
   width: 100%;
   max-width: 850px;
   max-height: 450px;
@@ -39,7 +39,7 @@
 /* INPUT DE RESPUESTA         */
 /* ============================= */
 
-.game-container input {
+.gameContainer input {
   width: 80%;
   padding: 14px;
   margin-top: 15px;
@@ -50,7 +50,7 @@
   font-size: 16px;
 }
 
-.answer-select-form {
+.answerSelectForm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +58,7 @@
 }
 
 /* SELECT PRINCIPAL */
-.answer-select {
+.answerSelect {
   width: 500px;
   padding: 12px 15px;
   border-radius: 12px;
@@ -71,16 +71,16 @@
   transition: var(--transition);
 }
 
-.answer-select:hover {
+.answerSelect:hover {
   background: var(--glass-strong);
 }
 
-.answer-select:focus {
+.answerSelect:focus {
   outline: 2px solid var(--primary);
 }
 
 /* BOTÓN */
-.answer-select-btn {
+.answerSelectBtn {
   width: 50%;
   padding: 12px;
   border-radius: 12px;
@@ -92,51 +92,58 @@
   transition: var(--transition);
 }
 
-.answer-select-btn:hover {
+.answerSelectBtn:hover {
   background: var(--primary-hover);
 }
 
-.answer-select option {
+.answerSelect option {
   background-color: #453668;
   color: white;
   font-size: 18px;
   padding: 8px 12px;
 }
 
-.pistas-incorrectas{
+/* ============================= */
+/* PISTAS + INCORRECTAS        */
+/* ============================= */
+
+.pistasIncorrectas {
   display: flex;
   flex-direction: row;
-  gap:40px;
+  gap: 40px;
   justify-content: space-around;
-  align-items: stretch
+  align-items: stretch;
 }
 
-.wrong-answers-box {
+.wrongAnswersBox {
   margin-top: 20px;
   padding: 15px;
-  background: var(--glass-strong) ;
+  background: var(--glass-strong);
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
   text-align: left;
 }
 
-.wrong-answers-box h3 {
+.wrongAnswersBox h3 {
   margin: 0 0 10px 0;
   color: #ff4f4f;
 }
 
-.wrong-answers-box ul {
+.wrongAnswersBox ul {
   list-style: disc;
   font-size: 20px;
 }
 
-.wrong-answers-box ul li {
+.wrongAnswersBox ul li {
   margin-top: 20px;
-
 }
 
-.loading-screen {
+/* ============================= */
+/* LOADING                    */
+/* ============================= */
+
+.loadingScreen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -162,12 +169,11 @@
   }
 }
 
-
 /* ============================= */
 /* BOTONES DE OPCIONES        */
 /* ============================= */
 
-.options-grid {
+.optionsGrid {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -175,7 +181,7 @@
   margin-top: 20px;
 }
 
-.options-grid button {
+.optionsGrid button {
   width: 48%;
   min-height: 45px;
   padding: 10px;
@@ -189,7 +195,7 @@
   word-break: break-word;
 }
 
-.options-grid button:hover {
+.optionsGrid button:hover {
   background: var(--primary-hover);
   transform: scale(1.03);
 }
@@ -198,7 +204,7 @@
 /* MENSAJE                    */
 /* ============================= */
 
-.game-message {
+.gameMessage {
   font-size: 1.4rem;
   font-weight: bold;
   text-align: center;
@@ -206,22 +212,19 @@
   margin: 0;
 }
 
-/* Verde para correcto */
-.game-message.correct {
-  color: #4caf50; /* verde elegante */
+.correct {
+  color: #4caf50;
 }
 
-/* Rojo para incorrecto */
-.game-message.incorrect {
-  color: #ff4f4f; /* rojo que ya usas en errores */
+.incorrect {
+  color: #ff4f4f;
 }
-
 
 /* ============================= */
 /* PISTAS                     */
 /* ============================= */
 
-.hints-box {
+.hintsBox {
   margin-top: 20px;
   text-align: left;
   background: var(--glass-strong);
@@ -230,8 +233,22 @@
   box-shadow: var(--shadow);
 }
 
-.hints-box p {
+.hintsBox p {
   margin: 8px 0;
+}
+
+/* ============================= */
+/* RESPONSIVE 1024px          */
+/* ============================= */
+
+@media (max-width: 1024px) {
+  .gameContainer {
+    padding: 25px;
+  }
+
+  .answerSelect {
+    width: 420px;
+  }
 }
 
 /* ============================= */
@@ -239,17 +256,22 @@
 /* ============================= */
 
 @media (max-width: 780px) {
-  .game-container {
+  .gameContainer {
     width: 95%;
     padding: 20px;
   }
 
-  .game-container img {
+  .gameContainer img {
     max-height: 350px;
   }
 
-  .options-grid button {
+  .optionsGrid button {
     width: 100%;
+  }
+
+  .pistasIncorrectas {
+    flex-direction: column;
+    gap: 20px;
   }
 }
 
@@ -258,21 +280,25 @@
 /* ============================= */
 
 @media (max-width: 500px) {
-  .game-container {
+  .gameContainer {
     width: 100%;
     padding: 15px;
   }
 
-  .game-container img {
+  .gameContainer img {
     max-height: 250px;
   }
 
-  .game-container input {
+  .gameContainer input {
     padding: 10px;
     font-size: 14px;
   }
 
-  .options-grid button {
+  .answerSelect {
+    width: 100%;
+  }
+
+  .optionsGrid button {
     padding: 10px;
     font-size: 13px;
   }

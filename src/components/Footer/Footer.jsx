@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Footer.css";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   const [isLight, setIsLight] = useState(false);
@@ -13,11 +13,11 @@ export default function Footer() {
   }, [isLight]);
 
   return (
-    <footer className="footer">
-      <p className="footer-text">© 2026 Daniel — Proyecto React</p>
+    <footer className={styles.footer}>
+      <p>© 2026 Daniel — Proyecto React</p>
 
       <button
-        className="theme-toggle"
+        className={styles.themeToggle}
         onClick={() => setIsLight(!isLight)}
       >
         {isLight ? "🌙 Modo oscuro" : "☀️ Modo claro"}

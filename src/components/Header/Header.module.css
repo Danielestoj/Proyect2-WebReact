@@ -23,39 +23,43 @@
 }
 
 /* LOGO */
-.navbar-logo {
+.navbarLogo {
   font-size: 26px;
   font-weight: bold;
   color: var(--text);
   text-decoration: none;
   transition: var(--transition);
+  cursor: pointer;
 }
 
-.navbar-logo:hover {
+.navbarLogo:hover {
   color: var(--primary-hover);
   transform: scale(1.05);
 }
 
 /* DERECHA (desktop) */
-.navbar-right {
+.navbarRight {
   display: flex;
   align-items: center;
   gap: 25px;
 }
 
-.navbar-user {
+.navbarUser {
   font-size: 16px;
   color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.navbar-points {
+.navbarPoints {
   font-size: 16px;
   font-weight: bold;
   color: var(--accent);
 }
 
 /* BOTÓN */
-.navbar-user-btn {
+.navbarUserBtn {
   border: none;
   border-radius: var(--radius);
   background-color: var(--primary);
@@ -64,9 +68,10 @@
   cursor: pointer;
   transition: var(--transition);
   font-size: 16px;
+  padding: 8px 14px;
 }
 
-.navbar-user-btn:hover {
+.navbarUserBtn:hover {
   background-color: var(--primary-hover);
   transform: scale(1.05);
 }
@@ -91,15 +96,15 @@
 }
 
 /* ============================= */
-/* MENÚ MÓVIL (fuera del navbar) */
+/* MENÚ MÓVIL                    */
 /* ============================= */
 
-.mobile-menu {
+.mobileMenu {
   position: absolute;
-  top: 85px; /* debajo del header */
+  top: 85px;
   left: 50%;
-  transform: translateX(-50%); /* CENTRADO REAL */
-  width: 90%; /* o 80% si lo quieres más estrecho */
+  transform: translateX(-50%);
+  width: 90%;
 
   display: none;
   flex-direction: column;
@@ -114,17 +119,15 @@
   z-index: 2000;
 }
 
-.mobile-menu.show {
+.show {
   display: flex;
 }
 
-
 /* ============================= */
-/* RESPONSIVE 500px           */
+/* RESPONSIVE 500px             */
 /* ============================= */
 
 @media (max-width: 500px) {
-
   .navbar {
     flex-direction: column;
     gap: 10px;
@@ -133,24 +136,21 @@
     padding: 12px 20px;
   }
 
-  /* Ocultar menú normal */
-  .navbar-right {
+  .navbarRight {
     display: none;
   }
 
-  /* Mostrar hamburguesa */
   .hamburger {
     display: flex;
     margin-top: 5px;
   }
 
-  /* Menú móvil ocupa todo el ancho */
-  .mobile-menu {
+  .mobileMenu {
     align-items: center;
     width: 90%;
   }
 
-  .navbar-user-btn {
+  .navbarUserBtn {
     width: 100%;
   }
 }

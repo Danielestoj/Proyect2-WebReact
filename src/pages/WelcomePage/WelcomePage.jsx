@@ -1,15 +1,15 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './WelcomePage.css';
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./WelcomePage.module.css";
 import { UserContext } from "../../components/Context/UserContext";
 
 function WelcomePage() {
   const { user, login, register, loginGuest } = useContext(UserContext);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ function WelcomePage() {
     const loggedUser = login(username, password);
 
     if (loggedUser) {
-      navigate('/game-selector');
+      navigate("/game-selector");
     } else {
       setMessage("Nombre de usuario o contraseña incorrectos.");
     }
@@ -27,7 +27,7 @@ function WelcomePage() {
     const newUser = register(username, password);
 
     if (newUser) {
-      navigate('/game-selector');
+      navigate("/game-selector");
     } else {
       setMessage("Este nombre ya está en uso.");
     }
@@ -35,20 +35,21 @@ function WelcomePage() {
 
   const handleGuestLogin = () => {
     loginGuest();
-    navigate('/game-selector');
+    navigate("/game-selector");
   };
 
   return (
-    <div className="welcome-page">
-      <div className="game-container">
+    <div className={styles.welcomePage}>
+      <div className={styles.gameContainer}>
         <h1>Welcome to the Game!</h1>
         <p>Get ready to have fun and challenge yourself.</p>
 
         {!user ? (
-          <div className="login-options">
-            <div className="login-box">
-              <h2>{isRegistering ? 'Registrarse' : 'Iniciar sesión'}</h2>
-              {message && <p className="error-message">{message}</p>}
+          <div className={styles.loginOptions}>
+            <div className={styles.loginBox}>
+              <h2>{isRegistering ? "Registrarse" : "Iniciar sesión"}</h2>
+
+              {message && <p className={styles.errorMessage}>{message}</p>}
 
               <input
                 type="text"
@@ -56,35 +57,42 @@ function WelcomePage() {
                 value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
-                  setMessage(""); // limpiar mensaje al escribir
+                  setMessage("");
                 }}
               />
+
               <input
                 type="password"
                 placeholder="Contraseña"
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
-                  setMessage(""); // limpiar mensaje al escribir
+                  setMessage("");
                 }}
               />
 
               <button onClick={isRegistering ? handleRegister : handleLogin}>
-                {isRegistering ? 'Registrarse' : 'Iniciar sesión'}
+                {isRegistering ? "Registrarse" : "Iniciar sesión"}
               </button>
 
               <p>
                 {isRegistering ? (
                   <>
-                    ¿Ya tienes cuenta?{' '}
-                    <span onClick={() => setIsRegistering(false)} className="link">
+                    ¿Ya tienes cuenta?{" "}
+                    <span
+                      onClick={() => setIsRegistering(false)}
+                      className={styles.link}
+                    >
                       Iniciar sesión
                     </span>
                   </>
                 ) : (
                   <>
-                    ¿No tienes cuenta?{' '}
-                    <span onClick={() => setIsRegistering(true)} className="link">
+                    ¿No tienes cuenta?{" "}
+                    <span
+                      onClick={() => setIsRegistering(true)}
+                      className={styles.link}
+                    >
                       Registrarse
                     </span>
                   </>
@@ -92,15 +100,18 @@ function WelcomePage() {
               </p>
             </div>
 
-            <div className="guest-box">
+            <div className={styles.guestBox}>
               <h2>Entrar como invitado</h2>
-              <button className="guest-button" onClick={handleGuestLogin}>
+              <button
+                className={styles.guestButton}
+                onClick={handleGuestLogin}
+              >
                 Entrar
               </button>
             </div>
           </div>
         ) : (
-          <div className="welcome-message">
+          <div className={styles.welcomeMessage}>
             <p>{message}</p>
           </div>
         )}

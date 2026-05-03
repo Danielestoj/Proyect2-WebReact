@@ -261,6 +261,8 @@ Incluye:
 
 Principalmente los usos de la IA ha sido tanto como herramienta de aprendizaje como para prototipádos rápidos en el caso de CSS, así como para la resolución de errores que no encontraba el motivo como para avanzar y resolverlo. Normalmente estos errores eran por la falta de conocimientos en herramientas de React y no saber cómo funcionan del todo bien.
 
+Tras el feedback por parte del profesor utilicé la inteligencia artificial como apoyo para mejorar y ampliar funcionalidades de mi proyecto y asegurarme que cumplía los requisitos propuestos por el enunciado del ejercicio. La IA me ayudó a implementar la nueva página de búsqueda de videojuegos (GameFinder) con debounce, paginación y estados de carga, además de crear la página de detalle (GameDetail) con obtención avanzada de datos, galería de imágenes y un modal interactivo para ampliarlas. También me ayudó en la creación de dos custom hooks (useSearchGames y useGameDetail) para separar la lógica de negocio y mejorar la arquitectura del proyecto. Además, revisó y reorganizó el código para hacerlo más limpio y profesional. En resumen, la IA actuó como asistente técnico para acelerar el desarrollo, resolver errores y aplicar buenas prácticas de diseño y estructura.
+
 ### Tiempos de desarrollo
 Los siguientes tiempos son tiempos aproximados del desarrollo de cada sección puesto que muchos de ellos se ha trabajado en paralelo unos con otros. Los tiempos incluyen el apartado de css de cada apartado.
 

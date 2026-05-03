@@ -1,63 +1,62 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../Context/UserContext";
-import { Link, useNavigate } from "react-router-dom";   
-import "./Header.css";
+import { useNavigate } from "react-router-dom";
+import styles from "./Header.module.css";
 
 function Header() {
   const { user, logout } = useContext(UserContext);
   const [open, setOpen] = useState(false);
 
-  const navigate = useNavigate();   //
+  const navigate = useNavigate();
 
-    // Navegación al pulsar GameGuess
   const goHome = () => {
     if (user) {
-      navigate("/game-selector");   // Usuario registrado → selector de juegos
+      navigate("/game-selector");
     } else {
-      navigate("/");                // Invitado → WelcomePage
+      navigate("/");
     }
     setOpen(false);
   };
 
   const goToProfile = () => {
     navigate(`/user-profile?user=${user.name}`);
-    setOpen(false); // cerrar menú móvil si estaba abierto
+    setOpen(false);
   };
 
   const handleLogout = () => {
     logout();
-    navigate("/");   // Volver a WelcomePage
+    navigate("/");
     setOpen(false);
   };
 
   return (
     <>
-      <nav className="navbar">
-        <div className="navbar-left">
-          <span className="navbar-logo" onClick={goHome}>
+      <nav className={styles.navbar}>
+        <div className={styles.navbarLeft}>
+          <span className={styles.navbarLogo} onClick={goHome}>
             GameGuess
           </span>
         </div>
 
         {/* Menú normal (desktop) */}
-        <div className="navbar-right">
+        <div className={styles.navbarRight}>
           {user && (
             <>
-              <button className="navbar-user" onClick={goToProfile}>
+              <button className={styles.navbarUser} onClick={goToProfile}>
                 👤 {user.name}
               </button>
 
-              <span className="navbar-points">⭐ {user.maxPoints}</span>
+              <span className={styles.navbarPoints}>⭐ {user.maxPoints}</span>
 
-              <button className="navbar-user-btn" onClick={handleLogout}>
+              <button className={styles.navbarUserBtn} onClick={handleLogout}>
                 Salir
               </button>
             </>
           )}
         </div>
 
-        {/* Hamburguesa (móvil) */}
-        <div className="hamburger" onClick={() => setOpen(!open)}>
+        {/* Hamburguesa */}
+        <div className={styles.hamburger} onClick={() => setOpen(!open)}>
           <div></div>
           <div></div>
           <div></div>
@@ -65,16 +64,20 @@ function Header() {
       </nav>
 
       {/* Menú móvil */}
-      <div className={`mobile-menu ${open ? "show" : ""}`}>
+      <div
+        className={`${styles.mobileMenu} ${open ? styles.show : ""}`}
+      >
         {user && (
           <>
-            <button className="navbar-user" onClick={goToProfile}>
+            <button className={styles.navbarUser} onClick={goToProfile}>
               👤 {user.name}
             </button>
 
-            <span className="navbar-points">⭐ {user.maxPoints}</span>
+            <span className={styles.navbarPoints}>⭐ {user.maxPoints}</span>
 
-            <button className="navbar-user-btn" onClick={handleLogout}>Salir</button>
+            <button className={styles.navbarUserBtn} onClick={handleLogout}>
+              Salir
+            </button>
           </>
         )}
       </div>

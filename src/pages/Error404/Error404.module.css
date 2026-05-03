@@ -1,4 +1,4 @@
-.notfound-container {
+.notfoundContainer {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,22 +9,22 @@
   color: #fff;
 }
 
-.notfound-code {
+.notfoundCode {
   font-size: 96px;
   margin: 0;
 }
 
-.notfound-title {
+.notfoundTitle {
   font-size: 28px;
   margin: 0;
 }
 
-.notfound-text {
+.notfoundText {
   font-size: 16px;
   opacity: 0.8;
 }
 
-.notfound-button {
+.notfoundButton {
   margin-top: 20px;
   padding: 10px 24px;
   border-radius: 999px;
@@ -35,6 +35,11 @@
   transition: 0.2s ease;
 }
 
-.notfound-button:hover {
+.notfoundButton:hover {
   background: #8a74c0;
+}
+
+.notfoundAutoredirect {
+  margin-top: 10px;
+  opacity: 0.8;
 }
